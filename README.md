@@ -54,23 +54,13 @@ To see the collection list, open this URL in your browser:
 
 [http://localhost:3000/api/collection](http://localhost:3000/api/collection)
 
-## Project Structure
-
-This project uses Next.js and includes the following key dependencies:
-
-- AWS SDK for JavaScript (v3)
-- AWS Amplify
-- React Hook Form
-- Zod for schema validation
-- Tailwind CSS for styling
-- Shadcn for UI
 
 ## AWS Configuration
 
 Make sure to set up your AWS credentials properly to use the Rekognition service. You may need to configure environment variables or use AWS Amplify for managing your backend resources.
 
 
-Reference:
+## Reference
 - [https://github.com/GustavoContreiras/web-authentication-with-aws-rekognition](https://github.com/GustavoContreiras/web-authentication-with-aws-rekognition)
 - [https://docs.amplify.aws/nextjs/build-a-backend/functions/examples/custom-auth-flows/](https://docs.amplify.aws/nextjs/build-a-backend/functions/examples/custom-auth-flows/)
 - [https://aws.amazon.com/blogs/developer/authenticate-applications-through-facial-recognition-with-amazon-cognito-and-amazon-rekognition/](https://aws.amazon.com/blogs/developer/authenticate-applications-through-facial-recognition-with-amazon-cognito-and-amazon-rekognition/)
