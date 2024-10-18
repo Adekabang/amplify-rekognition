@@ -40,15 +40,14 @@ function Home() {
 
   }
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start justify-center">
-        <h1>Home</h1>
+    <div className="">
+      <main className="max-w-xl px-4 mx-auto my-16 flex flex-col gap-4">
+        <h1 className="text-2xl font-bold">Home</h1>
         {loading ? <p>Loading...</p> : (
           <>
-            <p>Username: {user}</p>
-            <p>User ID: {userId}</p>
-            <p>Sign-in details: {JSON.stringify(signInDetails)}</p>
-            <Button onClick={handleSignOut}>Sign Out</Button>
+            <p>Welcome, {signInDetails.loginId}</p>
+            <span>This page is protected by AWS Amplify, AWS Cognito and AWS Rekognition.</span>
+            <Button variant="outline" className="hover:bg-red-500 hover:text-white" onClick={handleSignOut}>Sign Out</Button>
           </>
         )}
       </main>
