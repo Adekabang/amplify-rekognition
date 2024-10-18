@@ -29,7 +29,7 @@ export async function POST(request: Request) {
         })
     } else {
     return NextResponse.json({
-        error: "Couldn't find user by profile photo."
+        error: "Unmatched face. Please try again."
         })
     }
 

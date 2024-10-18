@@ -13,12 +13,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Link from "next/link";
+import { AlertTriangle, Terminal } from "lucide-react";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 Amplify.configure(outputs);
 export default function SignIn() {
     const [userImageB64, setUserImageB64] = useState<string | null>(null);
     const [step, setStep] = useState<string>("signin");
     const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string | null>(null);
     const router = useRouter();
 
     const formSchema = z.object({
@@ -47,9 +50,15 @@ export default function SignIn() {
             console.log(nextStep);
             setStep("confirm");
             setLoading(false);
+            setError(null);
         } catch (error) {
             console.log(error);
             setLoading(false);
+            setError("Invalid email or password.");
+            setUserImageB64(null);
+            form.reset();
+            setStep("signin");
+
         }
     };
     const submitConfirmSignIn = async () => {
@@ -62,7 +71,11 @@ export default function SignIn() {
             const data = await response.json();
             console.log(data);
             if (data.error) {
-                alert(data.error);
+                setLoading(false);
+                setError(data.error);
+                setUserImageB64(null);
+                form.reset();
+                setStep("signin");
                 return;
             }
             const { nextStep } = await confirmSignIn({
@@ -77,6 +90,10 @@ export default function SignIn() {
         } catch (error) {
             console.log(error);
             setLoading(false);
+            setError("Invalid email or password or face. Please try again.");
+            setUserImageB64(null);
+            form.reset();
+            setStep("signin");
         }
     };
 
@@ -89,6 +106,13 @@ export default function SignIn() {
             <main className="max-w-xl px-4 mx-auto my-16 flex flex-col gap-4">
                 {step === "signin" && (
                     <>
+                        {error && <Alert variant="destructive">
+                            <AlertTriangle className="h-4 w-4" />
+                            <AlertTitle>Error</AlertTitle>
+                            <AlertDescription>
+                                {error}
+                            </AlertDescription>
+                        </Alert>}
                         <h3 className="text-2xl font-bold">Sign In</h3>
                         <p>Enter your email below to login to your account</p>
                         <Form {...form} >
@@ -129,7 +153,7 @@ export default function SignIn() {
                     <>
                         <h3 className="text-2xl font-bold">Confirm your Face for Sign In</h3>
                         <FaceRegister setUserImageB64={setUserImageB64} userImageB64={userImageB64} />
-                        <Button className="w-full" onClick={submitConfirmSignIn} disabled={loading} type="submit">{loading ? "Loading..." : "Confirm Sign In"}</Button>
+                        <Button className="w-full" onClick={submitConfirmSignIn} disabled={loading || !userImageB64} type="submit">{loading ? "Loading..." : "Confirm Sign In"}</Button>
                     </>
                 )}
                 <div className="mt-4 text-center text-sm">Don't have an account? <Link className="underline" href="/signup">Sign up</Link></div>

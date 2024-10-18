@@ -7,7 +7,7 @@ import { signUp } from "aws-amplify/auth";
 import { useRouter } from "next/navigation";
 import FaceRegister from "../components/FaceRegister";
 import { Button } from "@/components/ui/button";
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,10 +27,16 @@ export default function SignUp() {
     const [loading, setLoading] = useState<boolean>(false);
     const formSchema = z.object({
         email: z.string().email(),
-        password: z.string().min(8),
+        password: z.string()
+            .min(8, "Password must be at least 8 characters")
+            .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+            .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+            .regex(/[0-9]/, "Password must contain at least one number")
+            .regex(/[^A-Za-z0-9]/, "Password must contain at least one special character"),
     })
 
     const form = useForm<z.infer<typeof formSchema>>({
+        mode: "onChange",
         resolver: zodResolver(formSchema),
         defaultValues: {
             email: "",
@@ -94,12 +100,6 @@ export default function SignUp() {
             <main className="max-w-xl px-4 mx-auto my-16 flex flex-col gap-4">
                 {(step === "signup" || step === "faceregister") && (
                     <>
-                        {/* <h3 className="text-2xl font-bold">Sign Up</h3>
-                        <label>Email</label>
-                        <input type="text" placeholder="Username" onChange={(e) => setEmail(e.target.value)} />
-                        <label>Password</label>
-                        <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-                        <Button type="submit" onClick={submitSignUp}>Sign Up</Button> */}
                         <Form {...form} >
                             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                                 {step === "signup" && (
@@ -127,13 +127,16 @@ export default function SignUp() {
                                                 <FormItem>
                                                     <FormLabel>Password</FormLabel>
                                                     <FormControl>
-                                                        <Input placeholder="********" type="password"  {...field} />
+                                                        <Input placeholder="********" type="password" {...field} />
                                                     </FormControl>
+                                                    <FormDescription>
+                                                        Password must be at least 8 characters, contain at least one uppercase letter, one lowercase letter, one number and one special character
+                                                    </FormDescription>
                                                     <FormMessage />
                                                 </FormItem>
                                             )}
                                         />
-                                        <Button className="w-full" onClick={() => setStep("faceregister")}>Sign Up</Button>
+                                        <Button className="w-full" onClick={() => { setStep("faceregister") }} disabled={!form.formState.isValid || !form.formState.isDirty}>Sign Up</Button>
                                     </>
                                 )}
                                 {step === "faceregister" && (
@@ -141,7 +144,10 @@ export default function SignUp() {
                                         <h3 className="text-2xl font-bold">Face Registration</h3>
                                         <p>Please look at the camera to register your face</p>
                                         <FaceRegister setUserImageB64={setUserImageB64} userImageB64={userImageB64} />
-                                        <Button className="w-full" disabled={loading} type="submit">{loading ? "Loading..." : "Submit Face"}</Button>
+                                        <div className="flex justify-center gap-4">
+                                            <Button className="w-2/5" variant="outline" onClick={() => setStep("signup")}>Back to Sign Up</Button>
+                                            <Button className="w-2/5" disabled={loading} type="submit">{loading ? "Loading..." : "Submit Face"}</Button>
+                                        </div>
                                     </>
                                 )}
                             </form>
