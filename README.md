@@ -4,24 +4,24 @@ FaceAuth is a Next.js project that implements facial authentication using AWS Re
 
 ## Getting Started
 
-To initialize the AWS Rekognition collection, open this URL in your browser:
-
-[http://localhost:3000/api/collection/init](http://localhost:3000/api/collection/init)
-
-To see the collection list, open this URL in your browser:
-
-[http://localhost:3000/api/collection](http://localhost:3000/api/collection)
-
-This project was bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This project was bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and [AWS Amplify](https://docs.amplify.aws/nextjs/start/account-setup/).
 
 ## Prerequisites
 
 Before running this project, make sure you have the following installed:
 
 - Node.js (version 18.16.0 or higher)
-- npm or yarn
+- npm or bun
+- AWS Credentials (look at .env.example and set the correct environment variables)
 
-## Installation
+## Running the Amplify Sandbox
+
+To start the development sandbox, run:
+```bash
+npx ampx sandbox
+```
+
+## Installation dependencies
 
 1. Clone the repository
 2. Navigate to the project directory
@@ -40,7 +40,16 @@ or
 bun --bun run dev
 ```
 
+
 Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+
+To initialize the AWS Rekognition collection, open this URL in your browser:
+
+[http://localhost:3000/api/collection/init](http://localhost:3000/api/collection/init)
+
+To see the collection list, open this URL in your browser:
+
+[http://localhost:3000/api/collection](http://localhost:3000/api/collection)
 
 ## Project Structure
 
@@ -51,6 +60,7 @@ This project uses Next.js and includes the following key dependencies:
 - React Hook Form
 - Zod for schema validation
 - Tailwind CSS for styling
+- Shadcn for UI
 
 ## AWS Configuration
 
