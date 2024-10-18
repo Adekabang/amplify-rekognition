@@ -33,6 +33,7 @@ export default function FaceRegister({
                         height={webcamDimensions.height}
                         ref={webcamRef}
                         audio={false}
+                        mirrored={true}
                         screenshotFormat="image/jpeg"
                         videoConstraints={{
                             width: webcamDimensions.width,
