@@ -49,6 +49,7 @@ export default function SignUp() {
     }, []);
 
     const formSchema = z.object({
+        fullName: z.string().min(3, "Full Name is required"),
         email: z.string().email(),
         password: z.string()
             .min(8, "Password must be at least 8 characters")
@@ -62,12 +63,13 @@ export default function SignUp() {
         mode: "onChange",
         resolver: zodResolver(formSchema),
         defaultValues: {
+            fullName: "",
             email: "",
             password: "",
         },
     })
 
-    const submitSignUp = async (email: string, password: string) => {
+    const submitSignUp = async (email: string, password: string, fullName: string) => {
         try {
             setLoading(true);
             const response = await fetch('/api/user/register', {
@@ -85,7 +87,8 @@ export default function SignUp() {
                 password: password,
                 options: {
                     userAttributes: {
-                        "custom:face_id": data.faceId
+                        "custom:face_id": data.faceId,
+                        "name": fullName
                     }
                 }
             });
@@ -115,7 +118,7 @@ export default function SignUp() {
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         console.log(values)
-        submitSignUp(values.email, values.password)
+        submitSignUp(values.email, values.password, values.fullName)
         setEmail(values.email);
     }
     return (
@@ -131,6 +134,19 @@ export default function SignUp() {
                                             <h3 className="text-2xl font-bold">Account Registration</h3>
                                             <p className="text-sm">Enter your information below to register for a new account</p>
                                             <div className="space-y-4 mt-4">
+                                                <FormField
+                                                    control={form.control}
+                                                    name="fullName"
+                                                    render={({ field }) => (
+                                                        <FormItem>
+                                                            <FormLabel>Full Name</FormLabel>
+                                                            <FormControl>
+                                                                <Input placeholder="John Doe" {...field} />
+                                                            </FormControl>
+                                                            <FormMessage />
+                                                        </FormItem>
+                                                    )}
+                                                />
                                                 <FormField
                                                     control={form.control}
                                                     name="email"
