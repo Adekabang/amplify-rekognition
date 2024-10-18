@@ -1,4 +1,4 @@
-import { RekognitionClient, IndexFacesCommand, SearchFacesByImageCommand, SearchFacesByImageCommandOutput, ListFacesCommand, DeleteCollectionCommand} from "@aws-sdk/client-rekognition";
+import { RekognitionClient, SearchFacesByImageCommand, SearchFacesByImageCommandOutput} from "@aws-sdk/client-rekognition";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {

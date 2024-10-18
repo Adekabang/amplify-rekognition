@@ -1,8 +1,8 @@
-import { RekognitionClient, IndexFacesCommand, SearchFacesByImageCommand, SearchFacesByImageCommandOutput, ListFacesCommand, DeleteCollectionCommand} from "@aws-sdk/client-rekognition";
+import { RekognitionClient, IndexFacesCommand, SearchFacesByImageCommand, SearchFacesByImageCommandOutput} from "@aws-sdk/client-rekognition";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  const { userImageB64, userName } = await request.json();
+  const { userImageB64 } = await request.json();
     try {
       const rekognitionClient = new RekognitionClient({
         region: process.env.AWS_REGION
