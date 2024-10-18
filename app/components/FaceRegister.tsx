@@ -50,7 +50,6 @@ export default function FaceRegister({
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: userName,
                 userImageB64: userImageB64
             })
         }).then(async (res) => {
