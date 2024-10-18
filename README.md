@@ -59,3 +59,4 @@ Make sure to set up your AWS credentials properly to use the Rekognition service
 Reference:
 - [https://github.com/GustavoContreiras/web-authentication-with-aws-rekognition](https://github.com/GustavoContreiras/web-authentication-with-aws-rekognition)
 - [https://docs.amplify.aws/nextjs/build-a-backend/functions/examples/custom-auth-flows/](https://docs.amplify.aws/nextjs/build-a-backend/functions/examples/custom-auth-flows/)
+- [https://aws.amazon.com/blogs/developer/authenticate-applications-through-facial-recognition-with-amazon-cognito-and-amazon-rekognition/](https://aws.amazon.com/blogs/developer/authenticate-applications-through-facial-recognition-with-amazon-cognito-and-amazon-rekognition/)
