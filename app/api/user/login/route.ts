@@ -29,7 +29,8 @@ export async function POST(request: Request) {
         })
     } else {
     return NextResponse.json({
-        error: "Unmatched face. Please try again."
+        error: "Unmatched face. Please try again.",
+        searchFacesResult,
         })
     }
 
