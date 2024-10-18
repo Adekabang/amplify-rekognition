@@ -66,6 +66,9 @@ This project uses Next.js and includes the following key dependencies:
 
 Make sure to set up your AWS credentials properly to use the Rekognition service. You may need to configure environment variables or use AWS Amplify for managing your backend resources.
 
+## Architecture
+[View on Eraser![](https://app.eraser.io/workspace/KHBy1oN8T9cXmf6BTsLG/preview?elements=UcoF4-c0sosAaikzeJV5SQ&type=embed)](https://app.eraser.io/workspace/KHBy1oN8T9cXmf6BTsLG?elements=UcoF4-c0sosAaikzeJV5SQ)
+
 Reference:
 - [https://github.com/GustavoContreiras/web-authentication-with-aws-rekognition](https://github.com/GustavoContreiras/web-authentication-with-aws-rekognition)
 - [https://docs.amplify.aws/nextjs/build-a-backend/functions/examples/custom-auth-flows/](https://docs.amplify.aws/nextjs/build-a-backend/functions/examples/custom-auth-flows/)
