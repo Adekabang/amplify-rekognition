@@ -1,15 +1,10 @@
 'use client'
 import { useEffect, useState } from "react";
-import Register from "./components/FaceRegister";
-import { Authenticator, Button, withAuthenticator } from '@aws-amplify/ui-react';
 import { Amplify } from 'aws-amplify';
-import '@aws-amplify/ui-react/styles.css';
 import outputs from "../amplify_outputs.json";
-import { AuthUser, confirmSignIn, confirmSignUp, fetchAuthSession, getCurrentUser, signIn, signOut } from "aws-amplify/auth";
-import { SignInInput, signUp, SignUpInput } from "aws-amplify/auth";
-import { Hub } from "aws-amplify/utils";
+import { getCurrentUser, signOut } from "aws-amplify/auth";
 import { useRouter } from "next/navigation";
-import { redirect } from 'next/navigation'
+import { Button } from "@/components/ui/button";
 
 Amplify.configure(outputs);
 function Home() {
