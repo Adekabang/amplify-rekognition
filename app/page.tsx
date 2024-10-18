@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from "react";
-import Register from "./components/Register";
+import Register from "./components/FaceRegister";
 import { Authenticator, Button, withAuthenticator } from '@aws-amplify/ui-react';
 import { Amplify } from 'aws-amplify';
 import '@aws-amplify/ui-react/styles.css';

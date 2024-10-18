@@ -7,20 +7,35 @@ import outputs from "../../amplify_outputs.json";
 import { confirmSignUp, signIn } from "aws-amplify/auth";
 import { SignInInput, signUp, SignUpInput } from "aws-amplify/auth";
 import { useRouter } from "next/navigation";
+import FaceRegister from "../components/FaceRegister";
 
 Amplify.configure(outputs);
 export default function SignUp() {
     const router = useRouter();
-    // const [userImageB64, setUserImageB64] = useState<string | null>(null);
-    // const [userName, setUserName] = useState<string>("");
+    const [userImageB64, setUserImageB64] = useState<string | null>(null);
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [confirmationCode, setConfirmationCode] = useState<string>("");
     const submitSignUp = async () => {
         try {
+            const response = await fetch('/api/user/register', {
+                method: 'POST',
+                body: JSON.stringify({ userImageB64 })
+            })
+            const data = await response.json();
+            console.log(data);
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
             const { isSignUpComplete, userId, nextStep } = await signUp({
                 username: email,
                 password: password,
+                options: {
+                    userAttributes: {
+                        "custom:face_id": data.faceId
+                    }
+                }
             });
             console.log(isSignUpComplete, userId, nextStep);
         } catch (error) {
@@ -53,6 +68,9 @@ export default function SignUp() {
                 <label>Password</label>
                 <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
                 <Button type="submit" onClick={submitSignUp}>Sign Up</Button>
+
+                <FaceRegister setUserImageB64={setUserImageB64} userImageB64={userImageB64} />
+
                 <hr />
                 <h3 className="text-2xl font-bold">Confirm Sign Up</h3>
                 <label>Confirmation Code</label>

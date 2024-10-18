@@ -11,16 +11,13 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-export default function Register({
+export default function FaceRegister({
     setUserImageB64,
     userImageB64,
-    setUserName,
-    userName }: {
-        setUserImageB64: (data: string) => void,
-        userImageB64: string | null,
-        setUserName: (data: string) => void,
-        userName: string
-    }) {
+}: {
+    setUserImageB64: (data: string) => void,
+    userImageB64: string | null,
+}) {
 
     const webcamDimensions = { width: 640, height: 360 }
     const webcamRef: any = useRef(null);
@@ -98,7 +95,7 @@ export default function Register({
 
             {/* <Input type="text" placeholder="Enter your name" value={userName} onChange={(e) => setUserName(e.target.value)} /> */}
 
-            <Form {...form}>
+            {/* <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <FormField
                         control={form.control}
@@ -118,7 +115,7 @@ export default function Register({
                     />
                     <Button type="submit">Submit</Button>
                 </form>
-            </Form>
+            </Form> */}
 
         </div>
     )
