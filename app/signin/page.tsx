@@ -6,12 +6,13 @@ import { confirmSignIn, signIn } from "aws-amplify/auth";
 import { useRouter } from "next/navigation";
 import FaceRegister from "../components/FaceRegister";
 import { Button } from "@/components/ui/button";
-import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import Link from "next/link";
 
 Amplify.configure(outputs);
 export default function SignIn() {
@@ -131,7 +132,7 @@ export default function SignIn() {
                         <Button className="w-full" onClick={submitConfirmSignIn} disabled={loading} type="submit">{loading ? "Loading..." : "Confirm Sign In"}</Button>
                     </>
                 )}
-                <div className="mt-4 text-center text-sm">Don't have an account? <a className="underline" href="/signup">Sign up</a></div>
+                <div className="mt-4 text-center text-sm">Don't have an account? <Link className="underline" href="/signup">Sign up</Link></div>
             </main>
         </div>
 
