@@ -59,6 +59,12 @@ To see the collection list, open this URL in your browser:
 
 Make sure to set up your AWS credentials properly to use the Rekognition service. You may need to configure environment variables or use AWS Amplify for managing your backend resources.
 
+## Flow
+### Registration
+[View on Eraser![](https://app.eraser.io/workspace/KHBy1oN8T9cXmf6BTsLG/preview?elements=aPFIZSpNz9hAeHAfa41y4w&type=embed)](https://app.eraser.io/workspace/KHBy1oN8T9cXmf6BTsLG?elements=aPFIZSpNz9hAeHAfa41y4w)
+
+### Sign In
+[View on Eraser![](https://app.eraser.io/workspace/KHBy1oN8T9cXmf6BTsLG/preview?elements=W7uKMwipD_iQXlQGT6X86Q&type=embed)](https://app.eraser.io/workspace/KHBy1oN8T9cXmf6BTsLG?elements=W7uKMwipD_iQXlQGT6X86Q)
 
 ## Reference
 - [https://github.com/GustavoContreiras/web-authentication-with-aws-rekognition](https://github.com/GustavoContreiras/web-authentication-with-aws-rekognition)
